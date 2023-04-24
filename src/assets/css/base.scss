@@ -1,0 +1,91 @@
+@use 'sass:string';
+@use 'sass:color';
+@use 'sass:list';
+
+$base-border-color: rgb(147, 199, 234);
+
+$primary-color: color.adjust(rgba(12, 21, 29, .85));
+
+@function set-primary-color-a($a) {
+  @return color.change($primary-color, $alpha: $a)
+}
+
+@function isDark($color){
+  @return color.lightness($color) < 40
+}
+
+@function isLight($color){
+  @return (not isDark($color))
+}
+
+@mixin defaut-border{
+  border-radius: 4px;
+  border: 2px solid $base-border-color;
+}
+
+@mixin set-lg-color($dir,$colorList) {
+  background: linear-gradient($dir,$colorList);
+}
+
+@mixin set-boxing($property) {
+  box-sizing: $property !important;
+  -moz-box-sizing: $property !important;
+  -webkit-box-sizing: $property !important;
+}
+
+@mixin set-shadow($property) {
+  -webkit-box-shadow: $property;
+  -moz-box-shadow: $property;
+  box-shadow: $property;
+}
+
+@mixin set-user-select($property) {
+  -webkit-touch-callout: $property;
+  -webkit-user-select: $property;
+  -moz-user-select: $property;
+  -ms-user-select: $property;
+  user-select: $property;
+}
+
+@mixin set-transition($var){
+  -webkit-transition: $var;
+  -moz-transition: $var;
+  -o-transition: $var;
+  transition: $var;
+}
+
+@mixin set-border-radius($type,$radius,$I) {
+  $_i: '';
+  @if ($I) {
+    $_i: '!important';
+  } @else {
+    $_i: '';
+  }
+
+  @if ($type == 'l') {
+    border-radius: $radius 0 0 $radius string.unquote($_i);
+  } @else if ($type == 'r') {
+    border-radius: 0 $radius $radius 0 string.unquote($_i);
+  } @else if ($type == 'u') {
+    border-radius: $radius $radius 0 0 string.unquote($_i);
+  } @else if ($type == 'b') {
+    border-radius: 0 0 $radius $radius string.unquote($_i);
+  } @else if ($type == 'all') {
+    border-radius: $radius string.unquote($_i)
+  }
+}
+
+@mixin set-border($type,$val) {
+  @if ($type == 'l') {
+    border: $val 0 0 $val;
+  } @else if ($type == 'r') {
+    border: 0 $val $val 0;
+  } @else if ($type == 'u') {
+    border: $val $val 0 0;
+  } @else if ($type == 'b') {
+    border: 0 0 $val $val;
+  } @else if ($type == 'all') {
+    border: $val
+  }
+}
+
