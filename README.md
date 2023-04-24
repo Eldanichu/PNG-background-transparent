@@ -1,4 +1,9 @@
-# web-sjz
+# PNG-background-transparent
+
+## Project description
+```
+Upload the png files to remove its background.
+```
 
 ## Project setup
 ```
@@ -14,11 +19,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
